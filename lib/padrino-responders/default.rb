@@ -125,13 +125,13 @@ module Padrino
         # other formats. Otherwise we will see default form view or serialized errors. 
         # 
         def default_response_for_save(kind, object, location=nil)
-          valid                = false
-          valid                = object.valid? if object.respond_to?(:valid?)
-          current_action       = kind == 'new' ? 'create' : 'update'
-          default_success_view = "#{object.class.name.underscore.pluralize}/#{current_action}"
-          default_form_view    = "#{object.class.name.underscore.pluralize}/#{kind}"
-          object_notice        = "responder.messages.#{object.class.name.underscore.pluralize}.#{current_action}"
-          alternative_notice   = "responder.messages.default.#{current_action}"
+          valid              = false
+          valid              = object.valid? if object.respond_to?(:valid?)
+          current_action     = kind == 'new' ? 'create' : 'update'
+          default_view       = "#{object.class.name.underscore.pluralize}/#{current_action}"
+          form_view          = "#{object.class.name.underscore.pluralize}/#{kind}"
+          object_notice      = "responder.messages.#{object.class.name.underscore.pluralize}.#{current_action}"
+          alternative_notice = "responder.messages.default.#{current_action}"
           
           if valid 
             case content_type
@@ -143,16 +143,19 @@ module Padrino
                   ))
                 redirect location
               else
-                render default_success_view 
+                render default_view 
               end
             when :js
-              render default_success_view
+              render default_view
             else
               render content_type, object, :location => location
             end
           else
-            if [:html, :js].include?(content_type)
-              render default_form_view
+            case content_type
+            when :html
+              render form_view
+            when :js
+              render default_view
             else
               errors = false
               errors = object.errors if object.respond_to?(:errors)
