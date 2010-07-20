@@ -8,6 +8,14 @@ You can install Padrino responders via rubygems:
 
   gem install padrino-responders
   
+Now register responders in your application:
+
+  class Avaro < Padrino::Application
+    register Padrino::Mailer
+    register Padrino::Helpers
+    register Padrino::Responders
+    ....
+  
 === Getting started 
 
 Default responder is responsible for exposing a resource to different mime 
