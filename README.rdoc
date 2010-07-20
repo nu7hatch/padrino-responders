@@ -25,9 +25,9 @@ requests, usually depending on the HTTP verb. The responder is triggered when
 
 When a request comes in, for example for an XML response, three steps happen:
 
-1) the responder searches for a template at extensions/index.xml;
-2) if the template is not available, it will invoke <code>#to_xml</code> on the given resource;
-3) if the responder does not <code>respond_to :to_xml</code>, call <code>#to_format</code> on it.
+* the responder searches for a template at extensions/index.xml;
+* if the template is not available, it will invoke <code>#to_xml</code> on the given resource;
+* if the responder does not <code>respond_to :to_xml</code>, call <code>#to_format</code> on it.
 
 === Builtin HTTP verb semantics
 
