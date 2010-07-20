@@ -4,7 +4,7 @@ module Padrino
     # requests, usually depending on the HTTP verb. The responder is triggered when
     # <code>respond</code> is called. The simplest case to study is a GET request:
     #
-    #   SampleApp.controller :examples do 
+    #   SampleApp.controllers :examples do 
     #     provides :html, :xml, :json
     #
     #     get :index do 
