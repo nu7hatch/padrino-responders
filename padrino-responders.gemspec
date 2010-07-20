@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{padrino-responders}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kris Kowalik"]
@@ -16,6 +16,17 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
+  ]
+  s.files = [
+    "LICENSE",
+     "README.rdoc",
+     "Rakefile",
+     "lib/padrino-responders.rb",
+     "lib/padrino-responders/default.rb",
+     "lib/padrino-responders/helpers/controller_helpers.rb",
+     "lib/padrino-responders/locale/en.yml",
+     "lib/padrino-responders/notifiers/flash_notifier.rb",
+     "padrino-responders.gemspec"
   ]
   s.homepage = %q{http://github.com/kriss/padrino-responders}
   s.rdoc_options = ["--charset=UTF-8"]
