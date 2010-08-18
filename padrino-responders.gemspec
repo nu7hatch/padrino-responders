@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{padrino-responders}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Kris Kowalik"]
-  s.date = %q{2010-07-20}
+  s.authors = ["Kris 'nu7hatch' Kowalik"]
+  s.date = %q{2010-08-18}
   s.description = %q{This component is used to create slim controllers 
       without unnecessery and repetitive code.}
   s.email = %q{kriss.kowalik@gmail.com}
@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
      "lib/padrino-responders/notifiers/flash_notifier.rb",
      "padrino-responders.gemspec"
   ]
-  s.homepage = %q{http://github.com/kriss/padrino-responders}
+  s.homepage = %q{http://github.com/nu7hatch/padrino-responders}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
