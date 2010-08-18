@@ -10,7 +10,7 @@ You can install Padrino responders via rubygems:
   
 Now register responders in your application:
 
-  class Avaro < Padrino::Application
+  class SampleApp < Padrino::Application
     register Padrino::Mailer
     register Padrino::Helpers
     register Padrino::Responders
