@@ -53,11 +53,11 @@ module Padrino
     #
     module Default
       
-      def respond(object, location=nil) # :nodoc:
+      def respond(object, location=nil, kind=nil) # :nodoc:
         if request.put?
-          default_response_for_save('edit', object, location)
+          default_response_for_save(kind || 'edit', object, location)
         elsif request.post?
-          default_response_for_save('new', object, location)
+          default_response_for_save(kind || 'new', object, location)
         elsif request.delete?
           default_response_for_destroy(object, location)
         else
@@ -125,13 +125,12 @@ module Padrino
         # other formats. Otherwise we will see default form view or serialized errors. 
         # 
         def default_response_for_save(kind, object, location=nil)
-          valid              = false
-          valid              = object.valid? if object.respond_to?(:valid?)
-          current_action     = kind == 'new' ? 'create' : 'update'
-          default_view       = "#{object.class.name.underscore.pluralize}/#{current_action}"
-          form_view          = "#{object.class.name.underscore.pluralize}/#{kind}"
-          object_notice      = "responder.messages.#{object.class.name.underscore.pluralize}.#{current_action}"
-          alternative_notice = "responder.messages.default.#{current_action}"
+          valid                = false
+          valid                = object.valid? if object.respond_to?(:valid?)
+          default_success_view = "#{controller_name}/#{action_name}"
+          default_form_view    = "#{controller_name}/#{kind}"
+          object_notice        = "responder.messages.#{controller_name}.#{action_name}"
+          alternative_notice   = "responder.messages.default.#{action_name}"
           
           if valid 
             case content_type
@@ -143,19 +142,16 @@ module Padrino
                   ))
                 redirect location
               else
-                render default_view 
+                render default_success_view 
               end
             when :js
-              render default_view
+              render default_success_view
             else
               render content_type, object, :location => location
             end
           else
-            case content_type
-            when :html
-              render form_view
-            when :js
-              render default_view
+            if [:html, :js].include?(content_type)
+              render default_form_view
             else
               errors = false
               errors = object.errors if object.respond_to?(:errors)
