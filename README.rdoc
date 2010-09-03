@@ -26,8 +26,7 @@ requests, usually depending on the HTTP verb. The responder is triggered when
     provides :html, :xml, :json
 
     get :index do 
-      @examples = Example.find(:all)
-      respond(@examples)
+      respond(@examples = Example.find(:all))
     end
   end
 
@@ -45,7 +44,7 @@ be written as:
   post :create do 
     @user = User.new(params[:user])
     @user.save
-    respond(@user)
+    respond(@user, url(:users_show, :id => @user.id))
   end
 
 Which is exactly the same as:
@@ -56,7 +55,7 @@ Which is exactly the same as:
     if @user.save
       flash[:notice] = 'User was successfully created.'
       case content_type
-        when :html then redirect url(:users, :show, :id => @user.id)
+        when :html then redirect url(:users_show, :id => @user.id)
         when :xml  then render :xml => @user, :status => :created, :location => url(:users, :show, :id => @user.id)
       end 
     else

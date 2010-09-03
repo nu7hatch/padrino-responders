@@ -1,5 +1,6 @@
 module Padrino
   module Responders
+    ##
     # Default responder is responsible for exposing a resource to different mime 
     # requests, usually depending on the HTTP verb. The responder is triggered when
     # <code>respond</code> is called. The simplest case to study is a GET request:
@@ -8,8 +9,7 @@ module Padrino
     #     provides :html, :xml, :json
     #
     #     get :index do 
-    #       @examples = Example.find(:all)
-    #       respond(@examples)
+    #       respond(@examples = Example.find(:all))
     #     end
     #   end
     #
@@ -27,7 +27,7 @@ module Padrino
     #   post :create do 
     #     @user = User.new(params[:user])
     #     @user.save
-    #     respond(@user)
+    #     respond(@user, url(:users_show, :id => @user.id))
     #   end
     #
     # Which is exactly the same as:
@@ -38,7 +38,7 @@ module Padrino
     #     if @user.save
     #       flash[:notice] = 'User was successfully created.'
     #       case content_type
-    #         when :html then redirect url(:users, :show, :id => @user.id)
+    #         when :html then redirect url(:users_show, :id => @user.id)
     #         when :xml  then render :xml => @user, :status => :created, :location => url(:users, :show, :id => @user.id)
     #       end 
     #     else
@@ -53,7 +53,7 @@ module Padrino
     #
     module Default
       
-      def respond(object, location=nil, kind=nil) # :nodoc:
+      def respond(object, location=nil, kind=nil) 
         if request.put?
           default_response_for_save(kind || 'edit', object, location)
         elsif request.post?

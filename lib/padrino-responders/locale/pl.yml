@@ -1,0 +1,7 @@
+en:
+  responder:
+    messages:
+      default:
+        destroy: "%{model} został poprawnie usunięty."
+        create: "%{model} został poprawnie dodany."
+        update: "%{model} został poprawnie zapisany."
