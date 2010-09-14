@@ -30,11 +30,13 @@ module Padrino
         # Returns translated, human readable name for specified model. 
         #
         def human_model_name(object)
-          if object.class.respond_to?(:human_name)
+          if object.class.respond_to?(:human)
+            object.class.human
+          elsif object.class.respond_to?(:human_name)
             object.class.human_name 
           else
             t("models.#{object.class.to_s.underscore}", :default => object.class.to_s.humanize)
-          end 
+          end
         end
       end # ControllerHelpers
     end # Helpers
