@@ -6,7 +6,7 @@ module Padrino
         # Shortcut for <code>notifier.say</code> method.
         #
         def notify(kind, message, *args, &block)
-          self.class.notifier.say(self, kind, message, *args, &block)
+          settings.notifier.say(self, kind, message, *args, &block) if settings.notifier
         end
         
         ##
