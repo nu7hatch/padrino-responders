@@ -19,7 +19,6 @@ begin
     g.email = "kriss.kowalik@gmail.com"
     g.homepage = "http://github.com/nu7hatch/padrino-responders"
     g.authors = ["Kris 'nu7hatch' Kowalik"]
-    g.add_dependency "padrino", ">= 0.9.14"
     g.add_development_dependency "riot", ">= 0.11.3"
     g.add_development_dependency "riot-rack", ">= 0"
     g.add_dependency "padrino", "~> 0.9.10"
