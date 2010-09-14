@@ -61,7 +61,7 @@ module Padrino
         elsif request.delete?
           default_response_for_destroy(object, location)
         else
-          default_response(object)
+          default_response(object, location)
         end
       end
 
@@ -83,11 +83,15 @@ module Padrino
         # default template for action, otherwise object will be serialized to 
         # needed format. 
         #
-        def default_response(object)
-          if [:html, :js].include?(content_type)
-            render "#{controller_name}/#{action_name}"
+        def default_response(object, location=nil)
+          if location
+            redirect location
           else
-            render content_type, object
+            if [:html, :js].include?(content_type)
+              render "#{controller_name}/#{action_name}"
+            else
+              render content_type, object
+            end
           end
         end
         
