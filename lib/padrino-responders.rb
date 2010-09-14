@@ -2,6 +2,8 @@ require 'padrino-core'
 require 'padrino-gen'
 require 'padrino-helpers'
 
+require 'rack-flash'
+
 FileSet.glob_require('padrino-responders/*.rb', __FILE__)
 FileSet.glob_require('padrino-responders/{helpers,notifiers}/*.rb', __FILE__)
 
@@ -16,8 +18,10 @@ module Padrino
     #
     class << self
       def registered(app)
-        app.set :notifier, Padrino::Responders::Notifiers::FlashNotifier
+        app.enable :sessions
+        app.enable :flash
         app.helpers Padrino::Responders::Helpers::ControllerHelpers
+        app.set :notifier, Padrino::Responders::Notifiers::FlashNotifier
         app.send :include, Padrino::Responders::Default
       end
       alias :included :registered
