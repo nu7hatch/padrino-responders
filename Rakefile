@@ -3,14 +3,13 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 def read(fname)
-  File.exist?(fname) ? File.read(fname) : ""
+  File.exist?(fname) ? File.open(fname).read : ""
 end
 
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |g|
     g.name = "padrino-responders"
-    g.version = read('VERSION')
     g.summary = "Simplified responders for Padrino framework"
     g.description = <<-DESCR
       This component is used to create slim controllers without unnecessery 
