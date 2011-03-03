@@ -13,7 +13,7 @@ module Padrino
         # Returns name of current action
         #
         def action_name
-          name = request.match.route.instance_variable_get('@name').to_s
+          name = request.route.instance_variable_get('@name').to_s
           name.gsub!(/^#{controller_name}_?/, '')
           name = 'index' if name == ''
           name
@@ -23,7 +23,7 @@ module Padrino
         # Returns name of current controller
         #
         def controller_name
-          request.match.route.controller.to_s
+          request.route.controller.to_s
         end
         
         ##
